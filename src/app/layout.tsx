@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
 import './globals.scss';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, Kodchasan } from 'next/font/google';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const kodchasanStandard = Kodchasan({
   subsets: ["latin"],
+  weight: "400",
+  variable: "--font-kodchasan-standard",
+});
+const kodchasanBold = Kodchasan({
+  subsets: ["latin"],
+  weight: "700",
+  variable: "--font-kodchasan-bold",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${kodchasanStandard.variable} ${kodchasanBold.variable} antialiased`}
       >
         {children}
       </body>
