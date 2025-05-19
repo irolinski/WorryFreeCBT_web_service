@@ -1,12 +1,12 @@
-import ContactForm from "@/components/ContactForm";
+import React from "react";
+import LandingScreen from "@/components/screens/Landing";
 
 export default function HomePage() {
   return (
-    <div>
-      <p>
-        <strong>Work in progress</strong>
-      </p>
-      <ContactForm />
-    </div>
+    <React.Fragment>
+      <div className="main">
+        <LandingScreen />
+      </div>
+    </React.Fragment>
   );
 }
