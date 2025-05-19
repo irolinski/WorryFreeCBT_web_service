@@ -50,6 +50,15 @@ h3 {
   font-family: Kodchasan;
 }
 
+button {
+  transition: 0.2s;
+  &:hover,
+  &:active {
+    opacity: 0.85;
+    cursor: pointer;
+  }
+}
+
 // containers
 
 .main {
@@ -114,7 +123,7 @@ h3 {
 .landing-screen {
   width: 100%;
   height: 100%;
-  min-height: 100vh;
+  // min-height: 100vh // uncomment to force-stretch it fullScreenHeight
   background-color: $main-blue;
   display: flex;
   flex-direction: column;
@@ -129,17 +138,50 @@ h3 {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding: 8em 0em 8em 0em;
+    padding: 6em 0em 8em 0em;
     color: $off-white;
+
+    @media (min-width: $lg) {
+      padding: 8em 2em 8em 0;
+    }
+
+    .landing-main {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @media (min-width: $lg) {
+        justify-content: center;
+        flex-direction: row;
+        align-items: center;
+
+        .slogan-original-container {
+          width: 45%;
+        }
+        .relax-image {
+          width: 40%;
+        }
+      }
+    }
 
     .slogan-original-container {
       width: 100%;
       padding: 0 1.5em 0 1.5em;
 
+      @media (min-width: $lg) {
+        padding: 0 0em 0 1.5em;
+      }
+
       .slogan-second-part {
         margin-top: 0.35em;
+
         @media (min-width: $xs) {
           display: none;
+        }
+
+        @media (min-width: $lg) {
+          display: block;
         }
       }
     }
@@ -158,11 +200,17 @@ h3 {
       }
 
       @media (min-width: $lg) {
-        font-size: 64px;
+        h2 {
+          max-width: 60vw;
+        }
       }
+
       .slogan-hyphen {
         @media (min-width: $xs) {
           display: none;
+        }
+        @media (min-width: $lg) {
+          display: inline;
         }
       }
     }
@@ -173,6 +221,9 @@ h3 {
       flex-direction: row;
       justify-content: end;
       padding: 0 1.5em 0 0;
+      @media (min-width: $lg) {
+        display: none;
+      }
     }
 
     .slogan-second-part-split {
@@ -182,12 +233,22 @@ h3 {
       @media (min-width: $xs) {
         display: block;
       }
+      @media (min-width: $lg) {
+        display: none;
+      }
     }
 
     .relax-image {
+      width: 80%;
       margin: 4em 0 4em 0;
+
       @media (min-width: $xs) {
         margin-top: 15vw;
+      }
+
+      @media (min-width: $md) {
+        width: 60%;
+        margin: 4em 0 2em 0;
       }
     }
 
@@ -195,10 +256,12 @@ h3 {
       display: flex;
       flex-direction: row;
       align-items: center;
+
       @media (min-width: $sm) {
         width: 100%;
         padding: 2em 0 0 2em;
       }
+
       .store-links-container {
         display: flex;
         flex-direction: column;
@@ -213,26 +276,26 @@ h3 {
         @media (min-width: $sm) {
           margin: 0;
           flex-direction: row;
-          width: 20em;
+          width: 25em;
           justify-content: space-between;
-          .store-link-button {
-            width: 150px;
-          }
         }
 
         @media (min-width: $md) {
           margin: 0 0 0 1.5em;
-          width: 30em;
-          .store-link-button {
-            width: 220px;
-          }
         }
 
         @media (min-width: $lg) {
-          margin: 0 0 0 1.5em;
-          width: 37em;
-          .store-link-button {
-            width: 280px;
+          margin: 0 0 0 10vw;
+          width: 28em;
+        }
+
+        .store-link-button {
+          @media (min-width: $sm) {
+            width: 180px;
+          }
+
+          @media (min-width: $lg) {
+            width: 200px;
           }
         }
       }
