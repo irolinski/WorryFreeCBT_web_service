@@ -112,7 +112,7 @@ const ContactScreen = () => {
           <div className="screen-header">
             <h2 className="screen-header-main">Connect with us</h2>
             <h3 className="screen-header-sub">
-              From users to researchers, we're eager to get in touch!
+              From users to researchers, we&apos;re eager to get in touch!
             </h3>
           </div>
           <form className="contact-form" onSubmit={handleSubmit}>

@@ -10,8 +10,8 @@ export default function PrivacyPage() {
       </p>
 
       <p>
-        This Privacy Policy applies to our mobile application, WorryFree ("the
-        App"). By accessing the App, you indicate that you have read,
+        This Privacy Policy applies to our mobile application, WorryFree (“the
+        App“). By accessing the App, you indicate that you have read,
         understood, and agree to the handling of personal information as
         described in this policy. All anonymous data — including any personal or
         exercise data you enter — is stored solely on your device. We do not
