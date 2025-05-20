@@ -1,7 +1,12 @@
+import { Metadata } from "next";
 import React from "react";
 import Footer from "@/components/Footer";
 import ContactScreen from "@/components/screens/Contact";
 import LandingScreen from "@/components/screens/Landing";
+
+export const metadata: Metadata = {
+  title: "WorryFree | Home",
+};
 
 export default function HomePage() {
   return (

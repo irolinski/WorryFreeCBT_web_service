@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "WorryFree | Privacy",
+};
+
 export default function PrivacyPage() {
   return (
     <div className="text-only-page-wrapper">
