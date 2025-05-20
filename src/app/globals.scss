@@ -23,14 +23,8 @@ $xxl: 1536px; // '2xl' in tailwind
 
 // all
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-
-  &:hover {
-    color: #535bf2;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -53,7 +47,8 @@ h3 {
   font-family: Kodchasan;
 }
 
-button {
+button,
+a {
   transition: 0.2s;
   &:hover,
   &:active {
@@ -94,8 +89,8 @@ button {
   min-height: 100%;
   overflow: hidden;
 
-  @media (min-width: $xl) {
-    min-height: 800px;
+  @media (min-width: $xxl) {
+    min-height: 1080px;
   }
 }
 
@@ -467,5 +462,58 @@ button {
         }
       }
     }
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em 0 1em;
+  bottom: 0;
+  width: 100vw;
+  height: 93px;
+  background-color: $main-blue;
+
+  @media (min-width: $md) {
+    padding: 0 2em 0 2em;
+  }
+  @media (min-width: $xl) {
+    padding: 0 3em 0 3em;
+  }
+
+  h2,
+  h3,
+  p,
+  span,
+  a {
+    color: $off-white;
+    font-size: 14px !important;
+    font-family: Inter;
+
+    @media (min-width: $sm) {
+      font-size: 24px;
+    }
+  }
+
+  .footer-links-container {
+    .footer-link {
+      display: inline-block;
+      font-weight: 500;
+      text-decoration: inherit;
+      padding: 0 0.5em 0 0.5em;
+
+      &:not(:last-child) {
+        // apply to every element except the last one
+        border-right: 1px solid $off-white;
+      }
+    }
+  }
+
+  .footer-brand {
+    // margin: 0 0 0 8px;
+    opacity: 0.5;
+    text-align: end;
   }
 }
