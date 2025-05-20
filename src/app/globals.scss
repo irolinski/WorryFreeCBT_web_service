@@ -59,6 +59,22 @@ button {
   }
 }
 
+.screen-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen-header-main {
+  font-size: 32px;
+}
+
+.screen-header-sub {
+  font-size: 20px;
+}
+
 // containers
 
 .main {
@@ -123,7 +139,6 @@ button {
 .landing-screen {
   width: 100%;
   height: 100%;
-  // min-height: 100vh // uncomment to force-stretch it fullScreenHeight
   background-color: $main-blue;
   display: flex;
   flex-direction: column;
@@ -298,6 +313,130 @@ button {
             width: 200px;
           }
         }
+      }
+    }
+  }
+}
+
+.contact-screen {
+  width: 100%;
+  height: 100%;
+  background-color: $off-white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: $lg) {
+    min-height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    color: $off-black;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 6em 0em 6em 0em;
+    color: $off-white;
+
+    .screen-header {
+      .screen-header-main {
+        font-weight: 800;
+      }
+      .screen-header-sub {
+        padding: 1em 1.5em 0 1.5em;
+        text-align: center;
+      }
+    }
+
+    .contact-form {
+      padding: 3em 0 3em 0;
+      width: 85%;
+      max-width: 400px;
+
+      @media (min-width: $md) {
+        width: 60%;
+        max-width: 670px;
+      }
+
+      input {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        padding: 0 0.75em 0 0.75em;
+        margin-bottom: 1em;
+        border: 1px solid $off-black;
+        border-radius: 20px !important;
+        background-color: white;
+        color: $dark-gray;
+        outline: none;
+
+        &.is-active {
+          color: $off-black;
+        }
+        &:focus {
+          border: 2px solid $carrot-orange;
+        }
+      }
+
+      .contact-form-user-data-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @media (min-width: $md) {
+          flex-direction: row;
+
+          input {
+            width: 47.5%;
+          }
+        }
+      }
+
+      textarea {
+        border-radius: 20px;
+        background-color: white;
+        min-height: 25vh;
+        max-height: 40vh;
+        border: 1px solid $off-black;
+        border-radius: 20px !important;
+        padding: 0.75em 0.75em 0 0.75em;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        color: $dark-gray;
+        outline: none;
+
+        &.is-active {
+          color: $off-black;
+        }
+
+        &:focus {
+          border: 2px solid $carrot-orange;
+        }
+      }
+    }
+
+    .contact-form-button-row {
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      padding: 1em 0;
+      .contact-form-button {
+        border-radius: 10px;
+        height: 45px;
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $carrot-orange;
+        font-family: Kodchasan;
       }
     }
   }

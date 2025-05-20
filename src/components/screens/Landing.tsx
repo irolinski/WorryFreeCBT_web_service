@@ -3,7 +3,7 @@ import Image from "next/image";
 const LandingScreen = () => {
   return (
     <div className="section">
-      <div className="landing-screen ">
+      <div className="landing-screen">
         <div className="content">
           <div className="landing-main">
             <div className="slogan slogan-original-container">
