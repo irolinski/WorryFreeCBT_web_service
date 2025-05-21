@@ -86,16 +86,19 @@ const NewsletterModal = ({
         const data = await res.json();
 
         if (!res.ok) {
-          throw new Error(data.error || "Something went wrong");
+          throw new Error(data.message || "Something went wrong");
         }
 
         alert(
           "Thank you for your trust!\n\nYou have been added to our mailing list!"
         );
         setDisableSendButton(true);
-      } catch (err) {
-        console.error(err);
-        alert("Failed to send email.");
+      } catch (err: unknown) {
+        if (err instanceof Error && err.message) {
+          alert(`${err.message}`);
+        } else {
+          alert("Something went wrong.");
+        }
       }
     }
   };
