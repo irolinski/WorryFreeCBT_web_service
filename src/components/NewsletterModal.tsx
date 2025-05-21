@@ -22,13 +22,11 @@ const NewsletterModal = ({
   const [newsletterForm, setNewsletterForm] = useState({
     name: "",
     email: "",
-    message: "",
   });
   const [newsletterFormErrors, setNewsletterFormErrors] = useState<{
     email: boolean;
     name: boolean;
-    message: boolean;
-  }>({ email: false, name: false, message: false });
+  }>({ email: false, name: false });
   const [disableSendButton, setDisableSendButton] = useState<boolean>(false);
 
   const validateNewsletterForm = (): boolean => {
@@ -37,8 +35,7 @@ const NewsletterModal = ({
     //content validation
     if (
       !validateNameInput(newsletterForm.name) ||
-      !validateEmailInput(newsletterForm.email) ||
-      !validateMessageInput(newsletterForm.message)
+      !validateEmailInput(newsletterForm.email)
     ) {
       isValidated = false;
     }
@@ -76,60 +73,35 @@ const NewsletterModal = ({
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
-    if (validateNewsletterForm()) {
-      try {
-        const res = await fetch("/api/sendmail", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newsletterForm),
-        });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "Something went wrong");
-        }
-
-        alert("Email sent successfully!");
-        setDisableSendButton(true);
-      } catch (err) {
-        console.error(err);
-        alert("Failed to send email.");
-      }
-    }
+    //add api call to db here
   };
+
   return (
-    <div className={`fixed inset-0 z-40 ${isOpen ? "block" : "hidden"}`}>
-      <div
-        className={`newsletter-modal fixed z-40 block h-full w-full ${
-          isOpen ? "block" : "hidden"
-        } `}
-      >
-        <div className="modal-body relative top-1/2 mx-auto min-h-[250px] -translate-y-1/2 bg-gray p-12 text-center w-[95vw] xs:w-[85vw] sm:w-[75vw] lg:w-[60vw] xl:w-[55vw]">
+    <div className={`newsletter-modal ${isOpen ? "is-open" : null}`}>
+      <div className="modal-overlay">
+        <div className="modal-body">
           <button
-            className="no-style absolute right-0 top-0 m-4 p-4"
+            className="modal-close-button"
             onClick={() => handleCloseButtonPress()}
           >
             &#10005;
           </button>
           <div>
-            <h2 className="p-4 text-2xl font-bold">
-              Subscribe to our Newsletter
-            </h2>
-            <div className=" xs:mx-8 xs:my-12 lg:px-8 items-center  flex flex-col">
-              <h5 className="text-sm ">
+            <h2 className="modal-title">Subscribe to our Newsletter</h2>
+            <div className="modal-content">
+              <h5 className="modal-subtext">
                 We'll let you know about new features in our app, events. We
                 promise not to use it more than once per every couple of weeks.
               </h5>
               <form className="newsletter-form" onSubmit={handleSubmit}>
-                <div className="newsletter-form-user-data-row">
+                <div className="newsletter-form__fields">
                   <input
                     name="name"
-                    className={`${
-                      newsletterForm.name.length > 0 ? "is-active" : null
-                    } ${newsletterFormErrors.name ? "invalid-input" : null}`}
+                    className={`form-input ${
+                      newsletterForm.name.length > 0 ? "form-input--active" : ""
+                    } ${
+                      newsletterFormErrors.name ? "form-input--invalid" : ""
+                    }`}
                     id="newsletter-form-name"
                     placeholder="Your name and surname"
                     maxLength={NAME_LENGHT.max}
@@ -151,9 +123,13 @@ const NewsletterModal = ({
                   />
                   <input
                     name="email"
-                    className={`${
-                      newsletterForm.email.length > 0 ? "is-active" : null
-                    } ${newsletterFormErrors.email ? "invalid-input" : null}`}
+                    className={`form-input ${
+                      newsletterForm.email.length > 0
+                        ? "form-input--active"
+                        : ""
+                    } ${
+                      newsletterFormErrors.email ? "form-input--invalid" : ""
+                    }`}
                     id="newsletter-form-email"
                     placeholder="Your email address"
                     maxLength={EMAIL_LENGTH.max}
@@ -175,11 +151,13 @@ const NewsletterModal = ({
                   />
                 </div>
 
-                <div className="newsletter-form-button-row">
+                <div className="newsletter-form__actions">
                   <button
                     type="submit"
-                    className={`newsletter-form-button ${
-                      disableSendButton ? "disabled" : null
+                    className={`newsletter-form__submit ${
+                      disableSendButton
+                        ? "newsletter-form__submit--disabled"
+                        : ""
                     }`}
                     disabled={disableSendButton}
                   >
@@ -188,9 +166,9 @@ const NewsletterModal = ({
                 </div>
               </form>
             </div>
-            <span className=" text-sm pb-1 border-b">
+            <span className="modal-privacy-note">
               We value your privacy and will never send any irrelevant
-              information{" "}
+              information
             </span>
           </div>
         </div>
