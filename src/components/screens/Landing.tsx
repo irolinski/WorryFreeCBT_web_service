@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const LandingScreen = () => {
   return (
-    <div className="section" id="landing-screen">
+    <div className="section" id="welcome">
       <div className="landing-screen">
         <div className="content">
           <div className="landing-main">
@@ -22,7 +22,6 @@ const LandingScreen = () => {
               width={0}
               height={0}
               sizes="100%"
-              // style={{ width: "80%", height: "auto" }}
             />
             <div className="slogan slogan-split-container">
               <h2 className="slogan-second-part slogan-second-part-split">

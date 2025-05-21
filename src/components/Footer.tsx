@@ -2,8 +2,8 @@ const Footer = () => {
   type LinkObj = { name: string; link: string };
 
   const footerLinks: LinkObj[] = [
-    { name: "Download now!", link: "#landing-screen" },
-    { name: "Contact us", link: "#contact-screen" },
+    { name: "Download now!", link: "#welcome" },
+    { name: "Contact us", link: "#contact" },
     { name: "Privacy ", link: "/privacy" },
   ];
 

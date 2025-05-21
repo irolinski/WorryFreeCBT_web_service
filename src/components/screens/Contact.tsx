@@ -106,7 +106,7 @@ const ContactScreen = () => {
   };
 
   return (
-    <div className="section" id="contact-screen">
+    <div className="section" id="contact">
       <div className="contact-screen">
         <div className="content">
           <div className="screen-header">
