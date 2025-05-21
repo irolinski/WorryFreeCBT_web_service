@@ -4,7 +4,6 @@ import { useState } from "react";
 import { InputLength } from "@/types/global";
 import {
   validateEmailInput,
-  validateMessageInput,
   validateNameInput,
   validateStringLength,
 } from "@/utils/formValidation";
@@ -74,6 +73,31 @@ const NewsletterModal = ({
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
     //add api call to db here
+    if (validateNewsletterForm()) {
+      try {
+        const res = await fetch("/api/newsletter_subscribe", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newsletterForm),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || "Something went wrong");
+        }
+
+        alert(
+          "Thank you for your trust!\n\nYou have been added to our mailing list!"
+        );
+        setDisableSendButton(true);
+      } catch (err) {
+        console.error(err);
+        alert("Failed to send email.");
+      }
+    }
   };
 
   return (
