@@ -43,8 +43,15 @@ h1 {
 
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5 {
   font-family: Kodchasan;
+}
+
+p,
+span {
+  font-family: Inter;
 }
 
 button,
@@ -519,8 +526,113 @@ a {
   }
 
   .footer-brand {
-    // margin: 0 0 0 8px;
     opacity: 0.5;
     text-align: end;
+  }
+}
+
+// modals
+
+.newsletter-modal {
+  background-color: rgba(70, 70, 70, 0.75);
+  .modal-body {
+    background-color: $off-white;
+
+    .newsletter-form {
+      padding: 2em 0 2em 0;
+      width: 100%;
+      max-width: 400px;
+
+      @media (min-width: $xs) {
+        width: 80%;
+        max-width: 670px;
+      }
+
+      @media (min-width: $md) {
+        // flex-direction: row;
+
+        // input {
+        width: 60%;
+        // }
+      }
+
+      input {
+        width: 100%;
+        height: 50px;
+        font-size: 16px;
+        padding: 0 0.75em 0 0.75em;
+        margin-bottom: 1em;
+        border: 1px solid $off-black;
+        border-radius: 20px !important;
+        background-color: white;
+        color: $dark-gray;
+        outline: none;
+
+        &.is-active {
+          color: $off-black;
+        }
+
+        &.valid-input {
+          border: 2px solid $pastel-green !important;
+        }
+
+        &.invalid-input {
+          border: 2px solid $red !important;
+        }
+
+        &:focus {
+          border: 2px solid $dark-blue;
+        }
+      }
+
+      .newsletter-form-user-data-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        // @media (min-width: $md) {
+        //   flex-direction: row;
+
+        //   input {
+        //     width: 47.5%;
+        //   }
+        // }
+      }
+
+      .newsletter-form-button-row {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        padding: 1em 0;
+        .newsletter-form-button {
+          border-radius: 10px;
+          height: 45px;
+          width: 100px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: $off-white;
+          background-color: $carrot-orange;
+          font-family: Kodchasan;
+
+          &.disabled {
+            background-color: $main-blue;
+            opacity: 0.8;
+            &:hover {
+              cursor: auto;
+              // opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // prevent overflow on extra small devices
+  @media (max-width: 425px) {
+    .modal-text {
+      font-size: 9px;
+      line-height: 1.3;
+    }
   }
 }

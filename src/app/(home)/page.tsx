@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import React from "react";
-import Footer from "@/components/Footer";
-import ContactScreen from "@/components/screens/Contact";
-import LandingScreen from "@/components/screens/Landing";
+import { HomepageBody } from "@/app/(home)/HomepageBody";
 
 export const metadata: Metadata = {
   title: "WorryFree | Home",
@@ -11,13 +9,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <React.Fragment>
-      <div className="flex flex-col">
-        <div className="main">
-          <LandingScreen />
-          <ContactScreen />
-        </div>
-        <Footer />
-      </div>
+      <HomepageBody />
     </React.Fragment>
   );
 }
