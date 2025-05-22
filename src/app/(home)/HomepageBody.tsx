@@ -14,7 +14,9 @@ export const HomepageBody = () => {
     <React.Fragment>
       <div className="flex flex-col">
         <div className="main">
-          <LandingScreen />
+          <LandingScreen
+            handleOpenNewsletterModal={() => setShowNewsletterModal(true)}
+          />
           <ContactScreen />
         </div>
         <Footer />

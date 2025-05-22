@@ -180,10 +180,10 @@ const ContactScreen = () => {
                 }));
               }}
             />
-            <div className="contact-form-button-row">
+            <div className="form-button-row">
               <button
                 type="submit"
-                className={`contact-form-button ${
+                className={`form-button contact-form-button ${
                   disableSendButton ? "disabled" : null
                 }`}
                 disabled={disableSendButton}
