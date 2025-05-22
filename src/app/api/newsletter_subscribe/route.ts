@@ -14,7 +14,7 @@ export async function POST(req: Request) {
     // if there is no such e-mail in the database
     if (result_checkIfAdded.rows.length < 1) {
       try {
-        const result_addToDb = await dbPool.query(query_addToDb, [name, email]);
+        await dbPool.query(query_addToDb, [name, email]);
         return new Response(JSON.stringify({ message: "Subscribed!" }), {
           status: 200,
         });

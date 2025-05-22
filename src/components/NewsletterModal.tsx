@@ -117,8 +117,9 @@ const NewsletterModal = ({
             <h2 className="modal-title">Subscribe to our Newsletter</h2>
             <div className="modal-content">
               <h5 className="modal-subtext">
-                We'll let you know about new features in our app, events. We
-                promise not to use it more than once per every couple of weeks.
+                We&apos;ll let you know about new features in our app, events.
+                We promise not to use it more than once per every couple of
+                weeks.
               </h5>
               <form className="newsletter-form" onSubmit={handleSubmit}>
                 <div className="newsletter-form__fields">
