@@ -603,6 +603,7 @@ a {
   padding: 3rem;
   text-align: center;
   background-color: $off-white;
+  border-radius: 15px;
 
   width: 95vw;
 
@@ -645,15 +646,14 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem 1rem;
+  margin: 0.5rem 0 0 0;
 
-  @media (min-width: 475px) {
-    margin: 3rem 2rem;
+  @media (min-width: $sm) {
+    margin: 0 3rem;
   }
 
-  @media (min-width: 1024px) {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  @media (min-width: $lg) {
+    padding: 0 2rem 0 2rem;
   }
 }
 
@@ -670,10 +670,6 @@ a {
   @media (min-width: $sm) {
     width: 100%;
     max-width: 670px;
-  }
-
-  @media (min-width: $xl) {
-    padding: 1em 0 0 0;
   }
 }
 
@@ -724,6 +720,10 @@ a {
   justify-content: flex-end;
   padding: 1rem 0;
   width: 100%;
+
+  @media (min-width: $xl) {
+    padding: 1.5rem 0;
+  }
 }
 
 .newsletter-form__submit {
