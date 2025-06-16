@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputLength } from "@/types/global";
 import {
   validateEmailInput,
@@ -12,19 +12,11 @@ const NAME_LENGTH: InputLength = { min: 2, max: 60 };
 const EMAIL_LENGTH: InputLength = { min: 5, max: 300 };
 const MESSAGE_LENGTH: InputLength = { min: 100, max: 1500 };
 
-const MAX_FILE_SIZE_MB = 4;
+export const MAX_BUG_SCREENSHOT_FILE_SIZE_MB = 4;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
-const params = new URLSearchParams(window.location.search);
-const deviceInfo = {
-  brand: params.get("brand"),
-  modelName: params.get("modelName"),
-  manufacturer: params.get("manufacturer"),
-  osName: params.get("osName"),
-  osVersion: params.get("osVersion"),
-};
-
 const ReportBugScreen = () => {
+  const [deviceInfo, setDeviceInfo] = useState("");
   const [contactForm, setContactForm] = useState({
     name: "",
     email: "",
@@ -38,13 +30,29 @@ const ReportBugScreen = () => {
     file: false,
   });
   const [disableSendButton, setDisableSendButton] = useState(false);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const deviceInfo = {
+      brand: params.get("brand"),
+      modelName: params.get("modelName"),
+      manufacturer: params.get("manufacturer"),
+      osName: params.get("osName"),
+      osVersion: params.get("osVersion"),
+    };
+    let deviceInfoString = JSON.stringify(deviceInfo)
+      .replaceAll(",", "\n")
+      .replace(/["{}]/g, " ")
+      .replaceAll(":", ": ");
+
+    setDeviceInfo(deviceInfoString);
+  }, []);
 
   const validateFile = (file: File | null): boolean => {
     if (file) {
       if (!ALLOWED_IMAGE_TYPES.includes(file.type)) {
         return false;
       }
-      if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      if (file.size > MAX_BUG_SCREENSHOT_FILE_SIZE_MB * 1024 * 1024) {
         return false;
       }
     }
@@ -109,17 +117,19 @@ const ReportBugScreen = () => {
 
   const handleSubmit = async (evt: React.FormEvent) => {
     evt.preventDefault();
-    const messageBody =
-      contactForm.message +
-      "\n\n\n\n\nUser's device info: " +
-      JSON.stringify(deviceInfo);
+    let messageBody = contactForm.message;
+    if (deviceInfo) {
+      messageBody += "\n\n\n\n\n ---- \n\n User's device info: \n" + deviceInfo;
+    }
 
     if (validateContactForm()) {
       const formData = new FormData();
       formData.append("name", contactForm.name);
       formData.append("email", contactForm.email);
       formData.append("message", messageBody);
-      if (screenshot) formData.append("screenshot", screenshot);
+      if (screenshot) {
+        formData.append("screenshot", screenshot);
+      }
 
       try {
         const res = await fetch("/api/report_bug", {
