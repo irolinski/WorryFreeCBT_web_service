@@ -12,7 +12,7 @@ const NAME_LENGTH: InputLength = { min: 2, max: 60 };
 const EMAIL_LENGTH: InputLength = { min: 5, max: 300 };
 const MESSAGE_LENGTH: InputLength = { min: 100, max: 1500 };
 
-export const MAX_BUG_SCREENSHOT_FILE_SIZE_MB = 4;
+const MAX_BUG_SCREENSHOT_FILE_SIZE_MB = 4;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 
 const ReportBugScreen = () => {
@@ -39,7 +39,7 @@ const ReportBugScreen = () => {
       osName: params.get("osName"),
       osVersion: params.get("osVersion"),
     };
-    let deviceInfoString = JSON.stringify(deviceInfo)
+    const deviceInfoString = JSON.stringify(deviceInfo)
       .replaceAll(",", "\n")
       .replace(/["{}]/g, " ")
       .replaceAll(":", ": ");
